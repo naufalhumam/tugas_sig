@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Praktikum Listener</title>
+
+    <style>
+        #map{
+            width: 100%;
+            height: 600px;
+            background: whitesmoke;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Contoh Aplikasi Web SIG</h1>
+    <div id="map"></div>
+    <script>
+        function initMap(){
+            var bdl = {lat :-5.3971, lng:105.2668};
+            var map = new google.maps.Map (document.getElementById('map'),{
+                zoom : 12,
+                minZoom : 10,
+                maxZoom : 16,
+                center : bdl
+        });
+
+    var marker = new google.maps.Marker({ //membuat marker ada titik pusat
+        position: bdl,
+        map: map
+    });
+
+    map.addListener('click',
+    function(event){
+        marker.setPosition(event.latLng);
+        console.log(marker.position.toString()); //klik marker pada peta yang ada di maps
+                                                 //buka inspect elemet caranya (Ctrl+Shift+I)
+                                                 //liat di konsole ada koordinat muncul saat klik peta 
+                                                 //addListener ini untuk mengerjakan tugas SIG ditambah function push untuk menambahkan data ke array
+                                                 //yang kemarin gak muncul petanya karena copy scrip api key nya terbalik :)
+    });   
+
+    }
+  
+    </script>
+  
+</body>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbbqT1TlPfBngjX21yWPHgSGFpWkUVnqw&callback=initMap">
+</script>
+
+</html>
